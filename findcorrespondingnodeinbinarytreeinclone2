@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+        p1 = original
+        p2= cloned
+        
+        def fun(p1 , p2 , target):
+            if p1 == None:
+                return None
+            if p1 == target:
+                return p2
+            left = fun(p1.left , p2.left , target)
+            if left != None:
+                return left
+            right = fun(p1.right , p2.right , target)
+            if right != None:
+                return right
+            
+            return None
+        
+        a = fun(p1 , p2 , target)
+        return a
